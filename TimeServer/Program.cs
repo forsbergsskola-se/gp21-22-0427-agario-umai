@@ -6,33 +6,22 @@ using System.Text;
 namespace TimeServer
 {
     public static class Program {
-        static void Main(string[] arguments)
+        public static void Main()
         {
-            var endpoint = new IPEndPoint(
-                // IP-Address: Used with IP-Protocol to find the right computer
-                IPAddress.Loopback, //127.0.0.1
-                // Port: Used with TCP / UDP Protocol to find the right program on a computer
-                14411
-            );
-            var tcpListener = new TcpListener(endpoint);
-            tcpListener.Start();
-        
-            while (true) {
-                var tcpClient = tcpListener.AcceptTcpClient();
-                // We CAN (but don't have to) Read from the Client
-                byte[] buffer = new byte[100];
-                tcpClient.GetStream().Read(buffer, 0, 100);
-                Console.WriteLine("Client said: "+Encoding.ASCII.GetString(buffer));
-                // We CAN (but don't have to) Write To the Client
-                var responseBuffer = Encoding.ASCII.GetBytes("Hello this is Sami's server.");
-                tcpClient.GetStream().Write(responseBuffer, 0, responseBuffer.Length);
-                // You could do more stuff with this client. Or just close it already:
-                tcpClient.Close();
-                return;
-            }
+            var tcpListener = new TcpListener(IPAddress.Loopback, 14411);
             
-          
+            tcpListener.Start();
+            Console.WriteLine("Start Listener");
+            
+            while (true)
+            {
+                var tcpClient = tcpListener.AcceptTcpClient();
+                tcpClient.GetStream().Write(GetGreetingMessage());
+                tcpClient.Close();
+            }
         }
         
+        private static byte[] GetGreetingMessage() 
+            => Encoding.ASCII.GetBytes("The Current time is: " + DateTime.Now);
     }
 }

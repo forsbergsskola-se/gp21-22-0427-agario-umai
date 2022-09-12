@@ -15,24 +15,19 @@ public class RequestServerTime : MonoBehaviour
     [SerializeField] private Text timeText;
 
     public void SendRequest()
-   {
-      var tcpClient = new TcpClient("127.0.0.1", 14411);
-
-      var stream = tcpClient.GetStream();
-      var bytes = new byte [tcpClient.ReceiveBufferSize];
-      stream.Read(bytes, 0, bytes.Length);
-
-      string message = Encoding.ASCII.GetString(bytes);
-      
-    UpdateText(message);
-
-   }
-
-    private void UpdateText(string message)
     {
-        timeText.text = message;
+        var serverEndPoint = new IPEndPoint(IPAddress.Loopback, 14411);
+        var clientEndPoint = new IPEndPoint(IPAddress.Loopback, 44441);
+        var tcpClient = new TcpClient(clientEndPoint);
+        var buffer = new byte[100];
+            
+        tcpClient.Connect(serverEndPoint);
+        tcpClient.GetStream().Read(buffer, 0, buffer.Length);
+        timeText.text = Encoding.ASCII.GetString(buffer);
+        tcpClient.Close();
     }
 
+   
 
 }
 
