@@ -378,7 +378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993500571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -720,7 +720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1302041295}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287058236}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1302041295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,8 +780,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1302041292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba94584d66725743ae305ec5562d967, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e827a3798cdbc4abab5d2bd7cea84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 287058238}
-  rst: {fileID: 993500573}
