@@ -31,6 +31,7 @@ public class RequestServerTime : MonoBehaviour
         tcpClient.GetStream().Read(buffer, 0, buffer.Length);
         //Translating the bytes to string
         timeText.text = Encoding.ASCII.GetString(buffer);
+        Debug.Log(Encoding.ASCII.GetString(buffer).Length);
         tcpClient.Close();
     }
 
