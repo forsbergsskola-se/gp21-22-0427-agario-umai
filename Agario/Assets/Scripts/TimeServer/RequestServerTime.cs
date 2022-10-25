@@ -32,7 +32,9 @@ public class RequestServerTime : MonoBehaviour
         //Getting package from server
         int bytesReceived = tcpClient.GetStream().Read(buffer);
         var intToByte = BitConverter.GetBytes(bytesReceived);
-        timeText.text = Encoding.ASCII.GetString(intToByte);
+        timeText.text = Encoding.UTF8.GetString(buffer.AsSpan(0, bytesReceived));
+        Debug.Log(bytesReceived);
+        
         
         tcpClient.Close();
     }
