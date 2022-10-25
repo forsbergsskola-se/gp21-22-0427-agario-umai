@@ -13,6 +13,8 @@ using UnityEngine.UI;
 public class RequestServerTime : MonoBehaviour
 {
     [SerializeField] private Text timeText;
+    
+
 
     public void SendRequest()
     {   
@@ -28,11 +30,10 @@ public class RequestServerTime : MonoBehaviour
         //Creating connection between client and server 
         tcpClient.Connect(serverEndPoint);
         //Getting package from server
-        //tcpClient.GetStream().Read(buffer);
-        var bytesReceived = tcpClient.GetStream().Read(buffer);
-        //Translating the bytes to string
-        timeText.text = Encoding.ASCII.GetString(buffer);
-        Debug.Log(bytesReceived);
+        int bytesReceived = tcpClient.GetStream().Read(buffer);
+        var intToByte = BitConverter.GetBytes(bytesReceived);
+        timeText.text = Encoding.ASCII.GetString(intToByte);
+        
         tcpClient.Close();
     }
 
