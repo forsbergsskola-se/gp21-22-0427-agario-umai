@@ -19,10 +19,10 @@ for (int i = 0; i < ports.Count; i++)
         Console.WriteLine("Start Listener on port " + ports[i]);
         break;
     }
-    catch (Exception e)
+    catch (SocketException e)
     {
         Console.WriteLine("Port " + ports[i] + " is already running" );
-       
+        
     }
 }
 
